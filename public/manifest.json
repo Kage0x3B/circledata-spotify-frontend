@@ -1,0 +1,39 @@
+{
+  "name": "CircleData",
+  "lang": "de-DE",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "",
+  "icons": [
+    {
+      "src": "assets/favicon-256.png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "assets/favicon-128.png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "assets/favicon-64.png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "assets/favicon-48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "assets/favicon-32.png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "assets/favicon-16.png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "assets/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ]
+}

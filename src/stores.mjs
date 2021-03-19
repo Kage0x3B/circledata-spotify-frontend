@@ -1,5 +1,14 @@
-import {writable} from "svelte/store";
+import { writable, readable } from "svelte/store";
 
-export let authInitialized = writable(false);
-export let loggedIn = writable(false);
-export let toasts = writable([]);
+export const authInitialized = writable(false);
+export const loggedIn = writable(false);
+export const toasts = writable([]);
+export const time = readable(new Date(), function start(set) {
+    const interval = setInterval(() => {
+        set(new Date());
+    }, 1000);
+
+    return function stop() {
+        clearInterval(interval);
+    };
+});

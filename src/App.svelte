@@ -4,6 +4,10 @@
     import { Container } from "sveltestrap";
     import api from "./api/api";
     import { authInitialized, loggedIn } from "./stores";
+    import Login from "./routes/Login.svelte";
+    import MainNavbar from "./components/MainNavbar.svelte";
+    import Dashboard from "./routes/Dashboard.svelte";
+    import SpotifyCallback from "./routes/SpotifyCallback.svelte";
 
     if (!$authInitialized) {
         $authInitialized = true;
@@ -13,13 +17,13 @@
 
 <Router basepath="/">
     <div class="mb-3">
-        <!--<MainNavbar />-->
+        <MainNavbar />
     </div>
 
     <Container>
-        <Route path="/">
-            Index
-        </Route>
+        <Route component={Dashboard} path="/" />
+        <Route component={Login} path="/login" />
+        <Route component={SpotifyCallback} path="/spotify-callback" />
     </Container>
 </Router>
 

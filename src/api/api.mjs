@@ -6,6 +6,7 @@ import { loggedIn } from "../stores";
 import storage from "../storage";
 
 import Auth from "./auth";
+import Dashboard from "./dashboard";
 
 const API_BASE = appEnv.API_BASE;
 
@@ -47,7 +48,11 @@ let authData = {
 };
 let additionalData = {
     tokenExpiration: 0,
-    userId: -1
+    userId: -1,
+    spotifyUserId: -1,
+    displayName: "Error, not logged in",
+    profilePictureUrl: "",
+    hasSpotifyPremium: false
 };
 
 function updateAuth(_authData) {
@@ -64,11 +69,19 @@ function updateAuth(_authData) {
         const tokenData = jwtDecode(authData.jwtToken);
         additionalData.tokenExpiration = tokenData.exp;
         additionalData.userId = tokenData.id;
+        additionalData.spotifyUserId = tokenData.spotifyUserId;
+        additionalData.displayName = tokenData.displayName;
+        additionalData.profilePictureUrl = tokenData.profilePictureUrl;
+        additionalData.hasSpotifyPremium = tokenData.hasSpotifyPremium;
 
         axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + authData.jwtToken;
     } else {
         axiosInstance.defaults.headers.common["Authorization"] = "";
         additionalData.userId = -1;
+        additionalData.spotifyUserId = -1;
+        additionalData.displayName = "Error, not logged in";
+        additionalData.profilePictureUrl = "";
+        additionalData.hasSpotifyPremium = false;
     }
 
     storage.storeAuth(getAuth());
@@ -80,6 +93,22 @@ function getAuth() {
 
 function getUserId() {
     return additionalData.userId;
+}
+
+function getSpotifyUserId() {
+    return additionalData.spotifyUserId;
+}
+
+function getDisplayName() {
+    return additionalData.displayName;
+}
+
+function getProfilePictureUrl() {
+    return additionalData.profilePictureUrl;
+}
+
+function hasSpotifyPremium() {
+    return additionalData.hasSpotifyPremium;
 }
 
 function loadAuth() {
@@ -181,10 +210,15 @@ function post(url, body, config) {
 export default {
     baseUrl: API_BASE,
     auth: authApi,
+    dashboard: Dashboard(apiUtilities),
     apiUtilities,
     loadAuth,
     getAuth,
     updateAuth,
     logout,
-    getUserId
+    getUserId,
+    getSpotifyUserId,
+    getDisplayName,
+    getProfilePictureUrl,
+    hasSpotifyPremium
 };

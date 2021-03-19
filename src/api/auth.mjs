@@ -1,16 +1,15 @@
 export default function (api) {
-    const login = (pin) =>
-        api.axios.post("/auth/login/worker", {
-            username: pin
-        });
+    const authorize = (code, state) => api.axios.post("/auth/authorize", { code, state });
     const logout = () => api.axios.post("/auth/logout");
     const refresh = (refreshToken) => api.axios.post("/auth/refresh", { refreshToken });
     const check = () => api.get("/auth/check");
+    const createSpotifyAuthUrl = () => api.axios.get("/auth/createSpotifyAuthUrl");
 
     return {
-        login,
+        authorize,
         logout,
         refresh,
-        check
+        check,
+        createSpotifyAuthUrl
     };
 }

@@ -32,10 +32,20 @@
             <Col lg={{size: 6, offset: 3}} md={{size: 8, offset: 2}} xs="12">
                 <Card class="p-4">
                     <Form on:submit={login}>
-                        <Button color="primary" type="submit" large block>Login with Spotify</Button>
+                        <Button block color="primary" large type="submit">
+                            <img alt="Spotify Logo" class="mr-2" src="/assets/img/spotify-white-64.png" /><!---->
+                            <span class="font-weight-bolder">Login With Spotify</span>
+                        </Button>
                     </Form>
                 </Card>
             </Col>
         </Row>
     </Container>
 </PageBase>
+
+<style>
+    img {
+        width: auto;
+        height: 32px;
+    }
+</style>

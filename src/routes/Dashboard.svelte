@@ -5,6 +5,7 @@
     import api from "../api/api";
     import { loggedIn } from "../stores";
     import CurrentlyPlaying from "../components/CurrentlyPlaying.svelte";
+    import CurrentDevices from "../components/CurrentDevices.svelte";
 
     let displayName = api.getDisplayName();
     let profilePictureUrl = api.getProfilePictureUrl();
@@ -20,9 +21,14 @@
                 <h3>{displayName}'s CircleData Dashboard</h3>
             </Col>
         </Row>
-        <Row>
+        <Row class="mb-3">
             <Col>
                 <CurrentlyPlaying />
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <CurrentDevices />
             </Col>
         </Row>
     </Container>

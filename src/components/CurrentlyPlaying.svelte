@@ -77,21 +77,21 @@
                 </picture>
             </div>
             <div class="info-container d-inline-flex flex-column justify-content-between w-100 h-100">
-                <div class="p-3 overflow-fade">
-                    <div>
+                <div class="p-3">
+                    <div class="overflow-ellipsis">
                         <strong><a href={data.item.external_urls.spotify} target="_blank">{data.item.name}</a></strong>
                     </div>
-                    <div>
+                    <div class="overflow-ellipsis">
                         {#each data.item.artists as artist, i}
                             <span><a href={artist.external_urls.spotify} target="_blank">{artist.name}</a>{i < data.item.artists.length - 1 ? ", " : ""}</span>
                         {/each}
                     </div>
                     {#if data.playlist}
-                        <div>
+                        <div class="overflow-ellipsis">
                             <a href={data.playlist.external_urls.spotify} target="_blank" title={data.playlist.description}>{data.playlist.name}</a>
                         </div>
                     {:else}
-                        <div>
+                        <div class="overflow-ellipsis">
                             <a href={data.item.album.external_urls.spotify} target="_blank">{data.item.album.name}</a>
                         </div>
                     {/if}
@@ -139,10 +139,10 @@
         overflow: hidden;
     }
 
-    .overflow-fade {
+    .overflow-ellipsis {
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: fade;
+        text-overflow: ellipsis;
     }
 
     .music-progress-bar-container {
